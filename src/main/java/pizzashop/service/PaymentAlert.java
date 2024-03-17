@@ -9,29 +9,31 @@ import java.util.Optional;
 public class PaymentAlert implements PaymentOperation {
     private PizzaService service;
 
+    private final String borderLine = "--------------------------";
+
     public PaymentAlert(PizzaService service){
         this.service=service;
     }
 
     @Override
     public void cardPayment() {
-        System.out.println("--------------------------");
+        System.out.println(borderLine);
         System.out.println("Paying by card...");
         System.out.println("Please insert your card!");
-        System.out.println("--------------------------");
+        System.out.println(borderLine);
     }
     @Override
     public void cashPayment() {
-        System.out.println("--------------------------");
+        System.out.println(borderLine);
         System.out.println("Paying cash...");
         System.out.println("Please show the cash...!");
-        System.out.println("--------------------------");
+        System.out.println(borderLine);
     }
     @Override
     public void cancelPayment() {
-        System.out.println("--------------------------");
+        System.out.println(borderLine);
         System.out.println("Payment choice needed...");
-        System.out.println("--------------------------");
+        System.out.println(borderLine);
     }
       public void showPaymentAlert(int tableNumber, double totalAmount ) {
         Alert paymentAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -45,10 +47,10 @@ public class PaymentAlert implements PaymentOperation {
         Optional<ButtonType> result = paymentAlert.showAndWait();
         if (result.get() == cardPayment) {
             cardPayment();
-            service.addPayment(tableNumber, PaymentType.Card,totalAmount);
+            service.addPayment(tableNumber, PaymentType.CARD,totalAmount);
         } else if (result.get() == cashPayment) {
             cashPayment();
-            service.addPayment(tableNumber, PaymentType.Cash,totalAmount);
+            service.addPayment(tableNumber, PaymentType.CASH,totalAmount);
         } else if (result.get() == cancel) {
              cancelPayment();
         } else {
