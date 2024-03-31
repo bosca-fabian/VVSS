@@ -5,8 +5,7 @@ import pizzashop.model.PaymentType;
 import pizzashop.repository.MenuRepository;
 import pizzashop.repository.PaymentRepository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PizzaServiceTest {
@@ -26,8 +25,7 @@ class PizzaServiceTest {
 
         int noOfElements = pizzaService.getPayments().size();
         //act
-        pizzaService.addPayment(tableNumber, type, amount);
-
+        assertDoesNotThrow(() -> pizzaService.addPayment(tableNumber, type, amount));
         //assert
         assert pizzaService.getPayments().size() == noOfElements + 1;
     }
@@ -46,7 +44,7 @@ class PizzaServiceTest {
 
         int noOfElements = pizzaService.getPayments().size();
         //act
-        pizzaService.addPayment(tableNumber, type, amount);
+        assertDoesNotThrow(() -> pizzaService.addPayment(tableNumber, type, amount));
 
         //assert
         assert pizzaService.getPayments().size() == noOfElements + 1;
@@ -88,7 +86,8 @@ class PizzaServiceTest {
         int initialSize = mockPizzaService.getPayments().size();
 
         //act
-        mockPizzaService.addPayment(mockTableNumber, mockType, mockAmount);
+        assertDoesNotThrow(() -> mockPizzaService.addPayment(mockTableNumber, mockType, mockAmount));
+
 
         //assert
         assertEquals(initialSize + 1, mockPizzaService.getPayments().size());
