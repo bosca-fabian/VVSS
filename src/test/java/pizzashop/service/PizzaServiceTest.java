@@ -74,6 +74,48 @@ class PizzaServiceTest {
     }
 
     @Test
+    @Order(5)
+    @DisplayName("Test 2 BVA")
+    @Timeout(1)
+    void addPayment_TC2_BVA() {
+        //arrange
+        PaymentRepository mockPaymentRepository = new PaymentRepository();
+        MenuRepository mockMenuRepository = new MenuRepository();
+        int mockTableNumber = 8;
+        PaymentType mockType = PaymentType.CASH;
+        double mockAmount = 0.1;
+        PizzaService mockPizzaService= new PizzaService(mockMenuRepository, mockPaymentRepository);
+        int initialSize = mockPizzaService.getPayments().size();
+
+        //act
+        mockPizzaService.addPayment(mockTableNumber, mockType, mockAmount);
+
+        //assert
+        assertEquals(initialSize + 1, mockPizzaService.getPayments().size());
+    }
+
+    @Test
+    @Order(2)
+    @DisplayName("Test 4 ECP")
+    void addPayment_TC4_ECP() {
+        //arrange
+        PaymentRepository mockPaymentRepository = new PaymentRepository();
+        MenuRepository mockMenuRepository = new MenuRepository();
+        int mockTableNumber = 0;
+        PaymentType mockType = PaymentType.CARD;
+        double mockAmount = 222.2;
+        PizzaService mockPizzaService= new PizzaService(mockMenuRepository, mockPaymentRepository);
+        String expectedMessage = "Error message - Invalid table number";
+
+        //act
+        Exception exception = assertThrows(Exception.class, () ->
+                mockPizzaService.addPayment(mockTableNumber, mockType, mockAmount));
+
+        //assert
+        assertEquals(exception.getMessage(), expectedMessage);
+    }
+
+    @Test
     @Disabled
     void skip_method() {}
 
