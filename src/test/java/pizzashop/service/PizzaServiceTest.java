@@ -31,7 +31,7 @@ class PizzaServiceTest {
     }
 
     @Test
-    @Order(2)
+    @Order(4)
     void addPayment_TC1_BVA() {
         //arrange
         int tableNumber = 1;
@@ -51,7 +51,7 @@ class PizzaServiceTest {
     }
 
     @Test
-    @Order(3)
+    @Order(7)
     void addPayment_TC5_BVA() {
         //arrange
         int tableNumber = 9;
@@ -115,7 +115,7 @@ class PizzaServiceTest {
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     @Disabled
     @SuppressWarnings("all")
     void addPayment_TC5_ECP(){
