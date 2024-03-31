@@ -69,7 +69,7 @@ class PizzaServiceTest {
         //act
         Exception exception = assertThrows(Exception.class, () -> pizzaService.addPayment(tableNumber, type, amount));
         //assert
-        assertEquals(exception.getMessage(), expectedMessage);
+        assertEquals(expectedMessage, exception.getMessage());
         assertEquals(noOfElements, pizzaService.getPayments().size());
     }
 
@@ -105,14 +105,14 @@ class PizzaServiceTest {
         PaymentType mockType = PaymentType.CARD;
         double mockAmount = 222.2;
         PizzaService mockPizzaService= new PizzaService(mockMenuRepository, mockPaymentRepository);
-        String expectedMessage = "Error message - Invalid table number";
+        String expectedMessage = "Invalid table number";
 
         //act
         Exception exception = assertThrows(Exception.class, () ->
                 mockPizzaService.addPayment(mockTableNumber, mockType, mockAmount));
 
         //assert
-        assertEquals(exception.getMessage(), expectedMessage);
+        assertEquals(expectedMessage, exception.getMessage());
     }
 
     @Test
