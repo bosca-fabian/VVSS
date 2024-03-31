@@ -5,8 +5,7 @@ import pizzashop.model.PaymentType;
 import pizzashop.repository.MenuRepository;
 import pizzashop.repository.PaymentRepository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PizzaServiceTest {
@@ -26,8 +25,7 @@ class PizzaServiceTest {
 
         int noOfElements = pizzaService.getPayments().size();
         //act
-        pizzaService.addPayment(tableNumber, type, amount);
-
+        assertDoesNotThrow(() -> pizzaService.addPayment(tableNumber, type, amount));
         //assert
         assert pizzaService.getPayments().size() == noOfElements + 1;
     }
@@ -46,7 +44,7 @@ class PizzaServiceTest {
 
         int noOfElements = pizzaService.getPayments().size();
         //act
-        pizzaService.addPayment(tableNumber, type, amount);
+        assertDoesNotThrow(() -> pizzaService.addPayment(tableNumber, type, amount));
 
         //assert
         assert pizzaService.getPayments().size() == noOfElements + 1;
@@ -88,7 +86,8 @@ class PizzaServiceTest {
         int initialSize = mockPizzaService.getPayments().size();
 
         //act
-        mockPizzaService.addPayment(mockTableNumber, mockType, mockAmount);
+        assertDoesNotThrow(() -> mockPizzaService.addPayment(mockTableNumber, mockType, mockAmount));
+
 
         //assert
         assertEquals(initialSize + 1, mockPizzaService.getPayments().size());
@@ -113,6 +112,47 @@ class PizzaServiceTest {
 
         //assert
         assertEquals(expectedMessage, exception.getMessage());
+    }
+
+    @Test
+    @Order(4)
+    @Disabled
+    @SuppressWarnings("all")
+    void addPayment_TC5_ECP(){
+        int tableNumber = 3;
+        PaymentType type = PaymentType.CASH;
+
+        PaymentRepository paymentRepository = new PaymentRepository();
+        MenuRepository menuRepository = new MenuRepository();
+        PizzaService pizzaService = new PizzaService(menuRepository, paymentRepository);
+
+        int noOfElements = pizzaService.getPayments().size();
+        String expectedMessage = "Invalid table number";
+//        Exception exception = assertThrows(Exception.class, () -> pizzaService.addPayment(tableNumber, type, " "));
+//        assertEquals(exception.getMessage(), expectedMessage);
+        assertEquals(noOfElements, pizzaService.getPayments().size());
+    }
+
+    @Test
+    @Order(6)
+    void addPayment_TC4_BVA(){
+        //arrange
+        int tableNumber = 0;
+        PaymentType type = PaymentType.CASH;
+        double amount = 0.1;
+
+        PaymentRepository paymentRepository = new PaymentRepository();
+        MenuRepository menuRepository = new MenuRepository();
+        PizzaService pizzaService = new PizzaService(menuRepository, paymentRepository);
+
+        int noOfElements = pizzaService.getPayments().size();
+        String expectedMessage = "Invalid table number";
+        //act
+        Exception exception = assertThrows(Exception.class, () -> pizzaService.addPayment(tableNumber, type, amount));
+
+        //assert
+        assertEquals(expectedMessage, exception.getMessage());
+        assertEquals(noOfElements, pizzaService.getPayments().size());
     }
 
     @Test
