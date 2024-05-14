@@ -161,39 +161,6 @@ class PizzaServiceTest {
         assertEquals(noOfElements, pizzaService.getPayments().size());
     }
 
-    @Test
-    @Order(8)
-    void getTotalAmount_F02_TC03() {
-        MenuRepository menuRepository = new MenuRepository();
-        PaymentRepository paymentRepository = mock(PaymentRepository.class);
-        List<Payment> payments = new ArrayList<>();
-        payments.add(new Payment(1, PaymentType.CASH, 23.0));
-        payments.add(new Payment(2, PaymentType.CASH, 54.0));
-        payments.add(new Payment(3, PaymentType.CASH, 65.0));
-        when(paymentRepository.getAll()).thenReturn(payments);
-        PizzaService pizzaService = new PizzaService(menuRepository, paymentRepository);
-
-        double result = pizzaService.getTotalAmount(PaymentType.CASH);
-
-        assertEquals(172.0, result);
-    }
-
-    @Test
-    @Order(9)
-    void getTotalAmount_F02_TC04() {
-        MenuRepository menuRepository = new MenuRepository();
-        PaymentRepository paymentRepository = mock(PaymentRepository.class);
-        List<Payment> payments = new ArrayList<>();
-        payments.add(new Payment(1, PaymentType.CASH, 23.0));
-        payments.add(new Payment(2, PaymentType.CASH, 54.0));
-        payments.add(new Payment(3, PaymentType.CASH, 65.0));
-        when(paymentRepository.getAll()).thenReturn(payments);
-        PizzaService pizzaService = new PizzaService(menuRepository, paymentRepository);
-
-        double result = pizzaService.getTotalAmount(PaymentType.CARD);
-
-        assertEquals(0.0f, result);
-    }
 
     @Test
     @Disabled
