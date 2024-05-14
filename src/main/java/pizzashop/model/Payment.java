@@ -39,4 +39,8 @@ public class Payment {
     public String toString() {
         return tableNumber + ","+type +"," + amount;
     }
+
+    public String ourToString() {
+        return tableNumber + ","+type +"," + amount;
+    }
 }

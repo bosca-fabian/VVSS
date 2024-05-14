@@ -78,4 +78,19 @@ class PizzaServiceTestWBT {
         assertEquals(0.0f, result);
     }
 
+    @Test
+    @Order(5)
+    void getTotalAmount_F02_TC05() {
+        MenuRepository menuRepository = new MenuRepository();
+        PaymentRepository paymentRepository = mock(PaymentRepository.class);
+        List<Payment> payments = new ArrayList<>();
+        payments.add(new Payment(1, PaymentType.CASH, 23.0));
+        payments.add(null);
+        payments.add(new Payment(3, PaymentType.CASH, 65.0));
+        when(paymentRepository.getAll()).thenReturn(payments);
+        PizzaService pizzaService = new PizzaService(menuRepository, paymentRepository);
+
+        assertThrows(NullPointerException.class,() -> pizzaService.getTotalAmount(PaymentType.CARD));
+    }
+
 }
