@@ -43,9 +43,10 @@ public class PaymentRepository {
         return item;
     }
 
-    public void add(Payment payment){
+    public Payment add(Payment payment){
         paymentList.add(payment);
         writeAll();
+        return payment;
     }
 
     public List<Payment> getAll(){
@@ -58,8 +59,8 @@ public class PaymentRepository {
 
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))){
             for (Payment p:paymentList) {
-                System.out.println(p.toString());
-                bw.write(p.toString());
+                System.out.println(p.ourToString());
+                bw.write(p.ourToString());
                 bw.newLine();
             }
         }
