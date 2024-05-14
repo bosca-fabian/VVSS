@@ -104,7 +104,7 @@ class PizzaServiceTest {
         PaymentType mockType = PaymentType.CARD;
         double mockAmount = 222.2;
         PizzaService mockPizzaService= new PizzaService(mockMenuRepository, mockPaymentRepository);
-        String expectedMessage = "Error message - Invalid table number";
+        String expectedMessage = "Invalid table number";
 
         //act
         Exception exception = assertThrows(Exception.class, () ->
