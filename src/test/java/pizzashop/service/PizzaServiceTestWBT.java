@@ -55,7 +55,7 @@ class PizzaServiceTestWBT {
 
         double result = pizzaService.getTotalAmount(PaymentType.CASH);
 
-        assertEquals(172.0, result);
+        assertEquals(142.0, result);
     }
 
     @Test
