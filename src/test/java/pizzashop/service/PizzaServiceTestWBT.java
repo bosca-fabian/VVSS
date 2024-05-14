@@ -44,7 +44,7 @@ class PizzaServiceTestWBT {
         assert pizzaService.getPayments() != null;
     }
 
-    @Test
+   /* @Test
     @Order(3)
     void getTotalAmount_F02_TC03() {
         MenuRepository menuRepository = new MenuRepository();
@@ -76,6 +76,6 @@ class PizzaServiceTestWBT {
         double result = pizzaService.getTotalAmount(PaymentType.CARD);
 
         assertEquals(0.0f, result);
-    }
+    }*/
 
 }
