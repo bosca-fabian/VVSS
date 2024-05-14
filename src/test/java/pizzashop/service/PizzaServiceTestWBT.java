@@ -17,7 +17,6 @@ import static org.mockito.Mockito.when;
 class PizzaServiceTestWBT {
 
     @Test
-    @Order(1)
     void getTotalAmount_F02_TC01() {
         MenuRepository menuRepository = new MenuRepository();
         PaymentRepository paymentRepository = mock(PaymentRepository.class);
@@ -30,7 +29,6 @@ class PizzaServiceTestWBT {
     }
 
     @Test
-    @Order(2)
     void getTotalAmount_F02_TC02() {
         MenuRepository menuRepository = new MenuRepository();
         PaymentRepository paymentRepository = mock(PaymentRepository.class);
@@ -45,7 +43,6 @@ class PizzaServiceTestWBT {
     }
 
     @Test
-    @Order(3)
     void getTotalAmount_F02_TC03() {
         MenuRepository menuRepository = new MenuRepository();
         PaymentRepository paymentRepository = mock(PaymentRepository.class);
@@ -62,7 +59,6 @@ class PizzaServiceTestWBT {
     }
 
     @Test
-    @Order(4)
     void getTotalAmount_F02_TC04() {
         MenuRepository menuRepository = new MenuRepository();
         PaymentRepository paymentRepository = mock(PaymentRepository.class);
