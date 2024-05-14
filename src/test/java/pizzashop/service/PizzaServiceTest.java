@@ -111,7 +111,7 @@ class PizzaServiceTest {
                 mockPizzaService.addPayment(mockTableNumber, mockType, mockAmount));
 
         //assert
-        assertEquals(1, 1);
+        assertEquals(expectedMessage, exception.getMessage());
     }
 
     @Test
