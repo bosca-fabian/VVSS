@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 class PizzaServiceTestWBT {
 
     @Test
@@ -75,7 +75,6 @@ class PizzaServiceTestWBT {
     }
 
     @Test
-    @Order(5)
     void getTotalAmount_F02_TC05() {
         MenuRepository menuRepository = new MenuRepository();
         PaymentRepository paymentRepository = mock(PaymentRepository.class);

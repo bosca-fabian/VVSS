@@ -10,5 +10,8 @@
         <module name="PizzaShop" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="sdir3224" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
