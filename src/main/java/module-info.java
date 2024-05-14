@@ -12,6 +12,6 @@ module pizzashop {
     exports pizzashop.controller;
 
     opens pizzashop.service;
-    exports pizzashop.service;
+    exports pizzashop.service; // Export the pizzashop.service package
 
 }
