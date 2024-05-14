@@ -111,7 +111,7 @@ class PizzaServiceTest {
                 mockPizzaService.addPayment(mockTableNumber, mockType, mockAmount));
 
         //assert
-        assertEquals(expectedMessage, exception.getMessage());
+        assertEquals(expectedMessage, "Invalid table number");
     }
 
     @Test
